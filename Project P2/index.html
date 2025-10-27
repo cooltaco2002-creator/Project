@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Eric & Carter">
+    <title>Fish Finder — Project Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon (relative) -->
+    <link rel="icon" href="images/fish1.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <header class="site-header container">
+      <div class="site-title">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Fish Finder</h1>
+          <p class="site-sub">A small web interface for fish observation & analysis</p>
+        </div>
+      </div>
+      <nav class="primary" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="form.html">Submit</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="site-hero" aria-labelledby="hero-title">
+        <div>
+          <h2 id="hero-title">Discover and analyze fish observations</h2>
+          <p>Preview datasets, view planned analysis, and submit new observations for the Python backend to process.</p>
+          <p><a class="button" href="dashboard.html">Open Dashboard</a></p>
+        </div>
+        <div>
+          <img src="images/fish2.svg" alt="Stylized fish illustration" width="420" height="260">
+        </div>
+      </section>
+      <section aria-labelledby="species-table">
+        <h3 id="species-table">Sample species table</h3>
+        <table>
+          <caption>Observed species (sample)</caption>
+          <thead>
+            <tr><th>Species</th><th>Count</th><th>Region</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Blue Tang</td><td>12</td><td>Pacific Reef</td></tr>
+            <tr><td>Clownfish</td><td>7</td><td>Coral Gardens</td></tr>
+            <tr><td>Sunfish</td><td>2</td><td>Open Ocean</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section aria-labelledby="geo-examples">
+        <h3 id="geo-examples">Geographic elements </h3>
+        <meta name="geo.position" content="37.7749;-122.4194">
+        <p>Open the observation location: <a href="https://www.google.ca/maps/@49.980802,-95.7782499,3z?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D">Google Maps</a></p>
+        <div style="height:260px;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.06)">
+          <iframe title="Map preview" src="https://www.google.ca/maps/@49.980802,-95.7782499,3z?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D" style="width:100%;height:100%;border:0"></iframe>
+      </section>
+
+      <section class="mt-1">
+        <div class="text-center">
+          <a class="button" href="dashboard.html">Go to Dashboard</a>
+          <a class="button secondary" href="form.html">Submit an Observation</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer  -->
+    <footer class="site-footer container">
+      <p>Contact: <a href="mailto:FishFinder@example.com">FishFinder@example.com</a> • Phone: (999) 123-4567</p>
+      <p>© Eric & Carter</p>
+    </footer>
+  </body>

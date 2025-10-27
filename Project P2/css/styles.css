@@ -1,0 +1,140 @@
+:root{
+  --ocean-deep: #003f5c;
+  --ocean-mid:  #2f5d7f;
+  --ocean-surface: #4fb0c6;
+  --sand: #f4dfc4;
+  --accent: #ff7f50; 
+  --muted: #6b7a8f;
+  --card-bg: rgba(255,255,255,0.9);
+  --glass: rgba(255,255,255,0.06);
+  --max-width: 1100px;
+  --radius: 12px;
+  --gap: 1rem;
+  --transition: 220ms ease;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, var(--ocean-surface) 0%, var(--ocean-mid) 45%, var(--ocean-deep) 100%);
+  color:#072029;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+.container{
+  width:calc(100% - 2rem);
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:2rem 1rem;
+}
+
+/* Header */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1rem 0;
+  color:var(--sand);
+}
+.site-title{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  font-weight:700;
+  letter-spacing:0.4px;
+}
+.site-title .logo{
+  width:46px;height:46px;border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #ffd7b5, #ff7f50 60%);
+  box-shadow:0 4px 12px rgba(0,0,0,0.18) inset;
+}
+nav.primary{
+  display:flex;gap:1rem;align-items:center;
+}
+nav.primary a{
+  color:var(--sand);text-decoration:none;padding:.35rem .6rem;border-radius:8px;transition:background var(--transition);
+}
+nav.primary a:hover, nav.primary a:focus{background:var(--glass);outline:none}
+
+.site-hero{
+  margin-top:1rem;
+  padding:2rem;
+  border-radius:var(--radius);
+  background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: #f9f7f3;
+  display:grid;grid-template-columns:1fr;gap:1rem;align-items:center;
+}
+.site-hero h1{font-size:2rem;margin:0 0 .25rem}
+.site-hero p{margin:0;color:rgba(245,243,240,0.9)}
+.hero-cta{margin-top:1rem}
+.button{
+  display:inline-block;padding:.6rem 1rem;border-radius:10px;background:var(--accent);color:white;border:none;cursor:pointer;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+.button.secondary{background:transparent;color:var(--sand);border:1px solid rgba(255,255,255,0.12)}
+
+.fish-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:var(--gap);
+  margin-top:1.25rem;
+}
+.fish-card{
+  background:var(--card-bg);
+  border-radius:10px;padding:1rem;overflow:hidden;position:relative;backdrop-filter: blur(6px);
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.fish-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+.fish-thumb{
+  width:100%;height:160px;border-radius:8px;object-fit:cover;display:block;margin-bottom:.75rem;background:linear-gradient(180deg, rgba(79,176,198,0.08), rgba(47,93,127,0.06));
+}
+.fish-meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.fish-title{font-weight:700;color:var(--ocean-deep)}
+.fish-sub{color:var(--muted);font-size:.95rem}
+
+.tag{
+  padding:.25rem .5rem;border-radius:999px;font-size:.82rem;background:rgba(255,127,80,0.12);color:var(--accent);font-weight:600
+}
+
+/* Footer */
+.site-footer{
+  margin-top:2rem;padding:2rem 0;color:rgba(255,255,255,0.9);text-align:center;font-size:.95rem
+}
+
+@keyframes swim {
+  0%{transform:translateX(-2px) translateY(0) rotate(-1deg)}
+  50%{transform:translateX(6px) translateY(-4px) rotate(1deg)}
+  100%{transform:translateX(-2px) translateY(0) rotate(-1deg)}
+}
+.swim-slow{animation:swim 6s ease-in-out infinite}
+
+/* Forms */
+input[type="text"], input[type="email"], select, textarea{
+  width:100%;padding:.6rem .75rem;border-radius:8px;border:1px solid rgba(10,20,30,0.06);background:white;font-size:1rem
+}
+label{display:block;margin-bottom:.35rem;color:#08323a}
+
+:focus{outline:none}
+a:focus, button:focus, input:focus, select:focus, textarea:focus{
+  box-shadow:0 0 0 3px rgba(79,176,198,0.18);border-color:var(--ocean-surface)
+}
+
+@media (min-width:900px){
+  .site-hero{grid-template-columns:1fr 420px;align-items:center}
+  .site-hero h1{font-size:2.6rem}
+}
+
+@media (max-width:420px){
+  .fish-thumb{height:120px}
+  .site-title{font-size:1rem}
+}
+
+.text-center{text-align:center}
+.mt-1{margin-top:1rem}
+.mb-1{margin-bottom:1rem}
+
+
