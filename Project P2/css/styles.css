@@ -15,7 +15,6 @@
     --transition: 220ms ease;
 }
 
-/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -37,11 +36,9 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* Page background gradient moved onto body so it covers the whole viewport */
     background: linear-gradient(180deg, var(--ocean-surface) 0%, var(--ocean-mid) 45%, var(--ocean-deep) 100%);
 }
 
-/* General Layout */
 .container{
     width:calc(100% - 2rem);
     max-width:var(--max-width);
@@ -158,8 +155,14 @@ nav.primary a:hover, nav.primary a:focus{background:var(--glass);outline:none}
     margin-bottom: 12px;
 }
 
+.fish-fact {
+    font-size: 22px;
+    color: var(--ocean-mid);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
 .epicfishfact {
-    /* show the fact as blue text on a white background for best contrast */
     background: #ffffff;
     padding: 12px;
     border-radius: 6px;

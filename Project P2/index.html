@@ -44,7 +44,6 @@
           </div>
         </div>
         <div aria-hidden="true">
-          <!-- decorative placeholder to preserve layout -->
         </div>
       </section>
       <section aria-labelledby="species-table">
@@ -65,9 +64,10 @@
       <section aria-labelledby="geo-examples">
         <h3 id="geo-examples">Geographic elements </h3>
         <meta name="geo.position" content="37.7749;-122.4194">
-        <p>Open the observation location: <a href="https://www.google.ca/maps/@49.980802,-95.7782499,3z?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D">Google Maps</a></p>
+        <p>Open the observation location: <a href="https://www.openstreetmap.org/?mlat=49.980802&mlon=-95.7782499#map=5/49.9808/-95.7782">OpenStreetMap</a></p>
         <div style="height:260px;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.06)">
-          <iframe title="Map preview" src="https://www.google.ca/maps/@49.980802,-95.7782499,3z?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D" style="width:100%;height:100%;border:0"></iframe>
+
+          <iframe title="Map preview" src="https://www.openstreetmap.org/export/embed.html?bbox=-96.2782499%2C49.480802%2C-95.2782499%2C50.480802&layer=mapnik&marker=49.980802%2C-95.7782499" style="width:100%;height:100%;border:0"></iframe>
       </section>
 
       <section class="mt-1">
@@ -188,7 +188,7 @@
             const dailyFish = getRandomFishForUser();
             document.getElementById('fishImage').src = dailyFish.image;
             document.getElementById('fishName').textContent = dailyFish.name;
-            document.getElementById('epicfishfact').innerHTML = `<strong>Epic Fish Fact:</strong> ${dailyFish.fact}`;
+            document.getElementById('epicfishfact').innerHTML = `<strong>Epic Fish Fact:</strong> <strong>${dailyFish.fact}</strong>`;
             
             // Content is always visible
             document.getElementById('fishContent').style.opacity = 1;
