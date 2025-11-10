@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <!-- <head> (block element) -->
+  <head>
+    <meta charset="utf-8">
+    <!-- accessibility element -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- SEO element, helps search engines understand the content -->
+    <meta name="author" content="Eric & Carter">
+    <title>Fish Finder — Project Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon icon(relative) -->
+    <link rel="icon" href="images/fish1.svg" type="image/svg+xml">
+  </head>
+  <!-- <body> (block element) -->
+  <body>
+    <header class="site-header container">
+      <div class="site-title">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Fish Finder</h1>
+          <p class="site-sub">A small web interface for fish observation & analysis</p>
+        </div>
+      </div>
+      <!-- nav links -->
+      <nav class="primary" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="about.html">About</a>
+        <a href="form.html">Submit</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section aria-labelledby="welcome-title">
+        <h2 id="welcome-title">Welcome to Fish Finder!</h2>
+        <p>Your go-to platform for tracking and analyzing fish observations. Explore our dashboard, submit your own sightings, and learn fascinating facts about various fish species.</p>
+      </section>
+      <!-- Schematic annotation (hero) -->  
+     <section class="site-hero" aria-labelledby="hero-title">
+        <div id="fishContent" style="opacity:0; transform: scale(0.98) translateY(6px); transition: all 320ms ease;"> 
+          <h2 id="hero-title">Fish of the Day</h2>
+          <p id="date" class="muted">Loading date...</p>
+          <div class="fish-card">
+            <!-- relative url (src="images/fish2.svg" ) -->  
+            <img id="fishImage" src="images/fish2.svg" alt="Fish of the day image" width="240" height="150">
+            <div>
+              <h3 id="fishName">Loading...</h3>
+              <p id="epicfishfact" class="epicfishfact"><strong>Epic Fish Fact:</strong> Loading...</p>
+              <p><a class="button" href="dashboard.html">Open Dashboard</a></p>
+            </div>
+          </div>
+        </div>
+        <div aria-hidden="true">
+        </div>
+      </section>
+
+      <section aria-labelledby="species-table">
+        <h3 id="species-table">Sample species table</h3>
+        <!-- <table> (block element) -->
+        <table>
+          <caption>Observed species (sample)</caption>
+          <thead>
+            <tr><th>Species</th><th>Count</th><th>Region</th></tr>
+          </thead>
+          
+          <tbody>
+            <tr><td>Blue Tang</td><td>12</td><td>Pacific Reef</td></tr>
+            <tr><td>Clownfish</td><td>7</td><td>Coral Gardens</td></tr>
+            <tr><td>Sunfish</td><td>2</td><td>Open Ocean</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section aria-labelledby="geo-examples">
+        <!-- <h3> (block element) -->
+          <!-- geographic elements (example, position, coordinates) -->
+        <h3 id="geo-examples">Geographic elements </h3>
+        <meta name="geo.position" content="37.7749;-122.4194">
+        <!-- https://www.openstreetmap.org (absolute URL) -->
+        <p>Open the observation location: <a href="https://www.openstreetmap.org/?mlat=49.980802&mlon=-95.7782499#map=5/49.9808/-95.7782">OpenStreetMap</a></p>
+        <div style="height:260px;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.06)">
+          <iframe title="Map preview" src="https://www.openstreetmap.org/export/embed.html?bbox=-96.2782499%2C49.480802%2C-95.2782499%2C50.480802&layer=mapnik&marker=49.980802%2C-95.7782499" style="width:100%;height:100%;border:0"></iframe>
+      </section>
+
+      <section class="mt-1">
+        <!-- <div> (block element) -->
+        <div class="text-center">
+          <a class="button" href="dashboard.html">Go to Dashboard</a>
+          <a class="button secondary" href="form.html">Submit an Observation</a>
+        </div>
+      </section>
+    </main>
+    <!-- Footer (block element) -->
+    <footer class="site-footer container">
+      <!-- Contact information -->
+      <p>Contact: <a href="mailto:FishFinder@example.com">FishFinder@example.com</a> • Phone: (999) 123-4567</p>
+      <p>© Eric & Carter</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>

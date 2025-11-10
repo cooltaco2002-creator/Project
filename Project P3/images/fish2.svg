@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="260" viewBox="0 0 420 260" role="img" aria-label="stylized fish illustration">
+  <rect width="420" height="260" fill="#ffffff" rx="16"/>
+  <g transform="translate(20,40)">
+    <ellipse cx="150" cy="60" rx="120" ry="60" fill="#4fb0c6" opacity="0.95"/>
+    <polygon points="260,60 320,30 320,90" fill="#ff7f50"/>
+    <circle cx="120" cy="50" r="6" fill="#072029"/>
+  </g>
+</svg>

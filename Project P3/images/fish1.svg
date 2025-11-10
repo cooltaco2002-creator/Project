@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120" role="img" aria-label="fish icon">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#4fb0c6"/>
+      <stop offset="1" stop-color="#2f5d7f"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="120" rx="12" fill="#e9fbff"/>
+  <g transform="translate(20,20)">
+    <ellipse cx="70" cy="40" rx="50" ry="28" fill="url(#g)" />
+    <polygon points="110,40 140,25 140,55" fill="#ff7f50" />
+    <circle cx="55" cy="32" r="4" fill="#072029" />
+  </g>
+</svg>
