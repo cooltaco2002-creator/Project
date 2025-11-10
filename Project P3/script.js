@@ -133,7 +133,8 @@
                 }
         }
 
-//Form valaidation script
+//Form validation script
+//On page load the script looks at checkboxes named "contact". Whenever the user checks/unchecks one, it updates a summary element (contactSummary) to show all currently selected options or "None selected" if nothing is checked.
 document.addEventListener('DOMContentLoaded', function() {
     const contactCheckboxes = document.querySelectorAll('input[name="contact"]');
     const contactSummary = document.getElementById('contactSummary');
