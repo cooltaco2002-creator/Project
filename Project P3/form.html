@@ -45,6 +45,7 @@
         <label><input type="checkbox" name="contact" value="email"> Email</label>
         <label><input type="checkbox" name="contact" value="phone"> Phone</label>
         <label><input type="checkbox" name="contact" value="text"> Text</label>
+  <p style="margin-top:.5rem;font-size:.95rem">contact methods: <span id="contactSummary">None selected</span></p>
         <!-- input type (number) makes it easy to enter a specific count -->
         <label for="count">Count observed (number)</label>
         <input type="number" id="count" name="count" min="0" step="1">
@@ -63,6 +64,23 @@
       </form>
 
     </main>
+    <script>
+      // Update contact method summary
+      const contactCheckboxes = document.querySelectorAll('input[name="contact"]');
+      const contactSummary = document.getElementById('contactSummary');
+
+      contactCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const selectedMethods = Array.from(contactCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+          contactSummary.textContent = selectedMethods.length > 0 ? selectedMethods.join(', ') : 'None selected';
+        });
+      });
+    </script>
+
+    
+    <!-- Footer (block element) -->
     <footer class="site-footer container">
       <p>Contact: <a href="mailto:FishFinder@example.com">FishFinder@example.com</a></p>
     </footer>

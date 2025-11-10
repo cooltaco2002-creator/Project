@@ -1,4 +1,4 @@
-        // fish data
+        // fish of the day array data
         // array of objects
         const fish = [
             { 
@@ -132,3 +132,18 @@
                     previewContent.style.transform = 'scale(1) translateY(0)';
                 }
         }
+
+//Form valaidation script
+document.addEventListener('DOMContentLoaded', function() {
+    const contactCheckboxes = document.querySelectorAll('input[name="contact"]');
+    const contactSummary = document.getElementById('contactSummary');
+
+    contactCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const selectedMethods = Array.from(contactCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+            contactSummary.textContent = selectedMethods.length > 0 ? selectedMethods.join(', ') : 'None selected';
+        });
+    });
+});
