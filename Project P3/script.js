@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       'Georgia, serif',
       '"Courier New", monospace'
     ];
-    
+    //function, this function changes the font on the webpage
     function toggleFont() {
       currentFont = (currentFont + 1) % fonts.length;
       document.body.style.fontFamily = fonts[currentFont];
