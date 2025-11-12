@@ -62,10 +62,12 @@
         <input type="checkbox" id="consent" name="consent" value="yes">
 
         <p><button class="button" type="submit">Submit Observation</button></p>
+        
         <script>
+          // When the submit button is clicked, show an alert
           const submitButton = document.querySelector('button[type="submit"]');
           submitButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault(); 
             alert("Thank you for your submission!");
           });
         </script>
