@@ -152,9 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
 //toggle font button, changes the font of the text on the webpage
  let currentFont = 0;
     const fonts = [
-      'Arial, sans-serif',
+      'Arial, sans-serif', 'comic sans',
       'Georgia, serif',
-      '"Courier New", monospace'
+      '"Courier New", monospace',
+      '"Comic Sans MS", "Comic Sans", cursive',
     ];
     //function, this function changes the font on the webpage
     function toggleFont() {
