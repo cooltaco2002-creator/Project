@@ -85,6 +85,7 @@
             ].join('|');
             
             const seed = today + fingerprint;
+        //For loop control flow. it loops through every character in the see string and combines them into a single number (hash) which is used to consistently choose a fish for the same user during a day
             let hash = 0;
             for (let i = 0; i < seed.length; i++) {
                 hash = ((hash << 5) - hash) + seed.charCodeAt(i);
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
       'Georgia, serif',
       '"Courier New", monospace'
     ];
-    
+    //function, this function changes the font on the webpage
     function toggleFont() {
       currentFont = (currentFont + 1) % fonts.length;
       document.body.style.fontFamily = fonts[currentFont];
