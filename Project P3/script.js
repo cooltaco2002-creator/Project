@@ -148,3 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+//toggle font button, changes the font of the text on the webpage
+ let currentFont = 0;
+    const fonts = [
+      'Arial, sans-serif',
+      'Georgia, serif',
+      '"Courier New", monospace'
+    ];
+    
+    function toggleFont() {
+      currentFont = (currentFont + 1) % fonts.length;
+      document.body.style.fontFamily = fonts[currentFont];
+    }
