@@ -31,8 +31,29 @@
         <p>About the creators: we are interested in marine life, data visualization, and building tools to help citizen scientists submit observations.</p>
       </section>
     </main>
-    <footer class="site-footer container">
+
+  </body>
+  <!-- Element addition/removal, this part adds and removes elements from the DOM -->
+  <div id="container">
+    <p>FISH</p>
+  </div>
+  <button onclick="addElement()">Add Fish</button>
+  <button onclick="removeElement()">Remove Fish</button>
+  <script>
+    function addElement() {
+      const newPara = document.createElement("p");
+      newPara.textContent = "FISH.";
+      document.getElementById("container").appendChild(newPara);
+    }
+
+    function removeElement() {
+      const container = document.getElementById("container");
+      if (container.lastElementChild) {
+        container.removeChild(container.lastElementChild);
+      }
+    }
+  </script>
+</html>
+<footer class="site-footer container">
       <p>Contact: <a href="mailto:FishFinder@example.com">FishFinder@example.com</a></p>
     </footer>
-  </body>
-</html>

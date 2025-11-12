@@ -110,6 +110,7 @@
             document.getElementById('fishImage').src = dailyFish.image;
             document.getElementById('fishName').textContent = dailyFish.name;
             // HTML Formating example (<strong>)
+                //innerHTML allows us to insert HTML tags within the text content
                 document.getElementById('epicfishfact').innerHTML = `<strong>Epic Fish Fact:</strong> <strong>${dailyFish.fact}</strong>`;
                 document.getElementById('fishContent').style.opacity = 1;
                 document.getElementById('fishContent').style.transform = 'scale(1) translateY(0)';
