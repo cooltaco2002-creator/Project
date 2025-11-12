@@ -318,6 +318,7 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus{
     left: 50%;
     transform: translate(-50%, -50%);
 } 
+
 /* styling for font toggle button */
  .toggle-btn {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
