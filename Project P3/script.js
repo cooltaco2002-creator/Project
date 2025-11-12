@@ -95,7 +95,7 @@
             const fishIndex = Math.abs(hash) % fish.length;
             return fish[fishIndex];
         }
-
+        //chouce component displays fish of the day on the webpage
         function displayFish() {
             const today = new Date();
             const dateStr = today.toLocaleDateString('en-US', { 
