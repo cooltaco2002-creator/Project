@@ -77,6 +77,27 @@
         </table>
       </section>
 
+      <section aria-labelledby="db-section">
+        <h3 id="db-section">Database-backed species list</h3>
+        <p class="muted">Loaded from SQLite via Express (sorted by length).</p>
+        <ul id="fish-list"></ul>
+        <h4>Habitat summary (GROUP BY)</h4>
+        <ul id="fish-summary"></ul>
+        <h4>Users + Favorite Fish (JOIN)</h4>
+        <ul id="users-with-fish"></ul>
+      </section>
+
+      <section aria-labelledby="add-fish">
+        <h3 id="add-fish">Add a fish (form input)</h3>
+        <form id="fish-form">
+          <label>Common Name <input name="common_name" required></label>
+          <label>Scientific Name <input name="scientific_name" required></label>
+          <label>Average Length (cm) <input name="average_length_cm" type="number" min="1" required></label>
+          <label>Habitat <input name="habitat" required></label>
+          <button type="submit" class="button">Create</button>
+        </form>
+      </section>
+
       <section aria-labelledby="geo-examples">
         <!-- <h3> (block element) -->
           <!-- geographic elements (example, position, coordinates) -->
@@ -103,4 +124,5 @@
       <p>© Eric & Carter</p>
     </footer>
     <script src="script.js"></script>
+    <script src="app.js"></script>
   </body>

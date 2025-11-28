@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Submit Observation — Fish Finder</title>
     <link rel="stylesheet" href="css/styles.css">
+    
   </head>
   <body>
     <header class="site-header container">
@@ -32,12 +33,9 @@
         <label for="species">Species observed (select)</label>
         <input list="species-list" id="species" name="species" placeholder="Start typing or choose a species...">
         <datalist id="species-list">
-          <option value="Blue Tang"></option>
-          <option value="Clownfish"></option>
-          <option value="Great White Shark"></option>
-          <option value="Manta Ray"></option>
-          <option value="Sunfish"></option>
-          <option value="Lemon Shark"></option>
+              {% for species in species_list %}
+              <option value="{{ species }}"></option>
+              {% endfor %}
         </datalist>
 
         <label>Preferred contact method (multiple selection allowed)</label>
