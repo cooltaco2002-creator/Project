@@ -1,54 +1,39 @@
-from flask import Flask, render_template, request, redirect
+"""
+db/app.py - Database layer for Flask backend
+Provides DB connection and helper functions; maintains separation of concerns.
+"""
 import sqlite3
-from datetime import datetime
+import os
 
-app = Flask(__name__)
+# Path to SQLite database (relative to Project root)
+DB_PATH = os.path.join(os.path.dirname(__file__), 'fishdata.db')
 
-# ---------- Helper Functions ----------
+def get_db_connection():
+    """Return a connection to the SQLite database with row factory."""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
 
-def get_fish_species():
-    """Fetch all fish common names from fishdata table."""
-    conn = sqlite3.connect('mydatabase.db')
+def init_db():
+    """Initialize database tables from SQL files if they don't exist."""
+    conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT common_name FROM fishdata ORDER BY common_name ASC")
-    species = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    return species
-
-def save_observation(form_data):
-    """Insert observation into observations table."""
-    conn = sqlite3.connect('mydatabase.db')
-    cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO observations (
-            name, email, date, species, contact_methods, count, location, notes, consent
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (
-        form_data['name'],
-        form_data['email'],
-        form_data['date'] or str(datetime.now().date()),
-        form_data['species'],
-        ','.join(form_data.getlist('contact')),  # store multiple selections as CSV
-        form_data.get('count') or 0,
-        form_data.get('location'),
-        form_data.get('notes'),
-        1 if form_data.get('consent') == 'yes' else 0
-    ))
+    
+    # Read and execute create.sql
+    with open(os.path.join(os.path.dirname(__file__), 'create.sql'), 'r') as f:
+        conn.executescript(f.read())
+    
+    # Read and execute createuser.sql
+    with open(os.path.join(os.path.dirname(__file__), 'createuser.sql'), 'r') as f:
+        conn.executescript(f.read())
+    
+    # Seed fishdata if empty
+    cursor.execute('SELECT COUNT(*) FROM fishdata')
+    if cursor.fetchone()[0] == 0:
+        with open(os.path.join(os.path.dirname(__file__), 'insert.sql'), 'r') as f:
+            conn.executescript(f.read())
+        print('Seeded fishdata table')
+    
     conn.commit()
     conn.close()
-
-# ---------- Routes ----------
-
-@app.route('/submit-observation', methods=['GET', 'POST'])
-def observation_form():
-    if request.method == 'POST':
-        save_observation(request.form)
-        return redirect('/submit-observation')  # reload page after submission
-    
-    species_list = get_fish_species()
-    return render_template('observation_form.html', species_list=species_list)
-
-# ---------- Main ----------
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    print('Database initialized')

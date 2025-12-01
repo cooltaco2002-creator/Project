@@ -1,16 +1,30 @@
-# Project
-To make it run 
+# Project — Fish Finder Full-Stack Application
 
-Install dependencies and start the server:
+## Running the Application
 
+You can run this application with **either** Node.js (Express) **or** Python (Flask) backend.
+
+### Option 1: Flask Backend (Python)
+
+```powershell
+Push-Location 'c:\Users\coolt\OneDrive\Documents\GitHub\Project\Project'
+pip install -r requirements.txt
+python app.py
+```
+
+Open in browser: `http://localhost:5000/index.html`
+
+### Option 2: Express Backend (Node.js)
+
+```powershell
 Push-Location 'c:\Users\coolt\OneDrive\Documents\GitHub\Project\Project'
 npm install
 node server.js
+```
 
+Open in browser: `http://localhost:3000/index.html`
 
-Open the app in your browser:
-
-Start-Process 'http://localhost:3000/index.html'
+**Note:** Both backends use the same SQLite database (`db/fishdata.db`) and expose identical REST API endpoints.
 
 ## Data Dictionary
 
@@ -78,7 +92,55 @@ Start-Process 'http://localhost:3000/index.html'
 
 Relationship:
 - users.favorite_fish_id → fishdata.id
-	- Type: Optional many-to-one (many users can reference one fish)
-	- On delete: SET NULL (keeps user, clears favorite)
-	- On update: CASCADE (keeps referential integrity if fish id changes)
+  - Type: Optional many-to-one (many users can reference one fish)
+  - On delete: SET NULL (keeps user, clears favorite)
+  - On update: CASCADE (keeps referential integrity if fish id changes)
 ```
+
+## Architecture & Separation of Concerns
+
+This application maintains separation of concerns across backend and frontend layers:
+
+**Backend Options:**
+- **Flask (Python)**: `app.py` in Project root
+  - Routes: REST API endpoints for fish, users, summary, join, subquery
+  - Database layer: `db/app.py` provides `get_db_connection()` and `init_db()` helpers
+  - Static serving: Serves HTML/CSS/JS from Project root
+  
+- **Express (Node.js)**: `server.js` in Project root
+  - Routes: Identical REST API endpoints
+  - Database layer: Inline SQLite connection with `db.exec()` for SQL file execution
+  - Static serving: Serves from Project root via `express.static()`
+
+**Frontend:**
+- `index.html`: Main page with data display containers and fish creation form
+- `app.js`: Fetches data from `/api/*` endpoints and renders dynamically
+- `script.js`: Original "Fish of the Day" logic (unchanged)
+- Uses relative URLs so works with both backends without modification
+
+**Database:**
+- `db/fishdata.db`: SQLite database (shared by both backends)
+- `db/create.sql`: `fishdata` table schema
+- `db/createuser.sql`: `users` table schema
+- `db/insert.sql`: Seed data for `fishdata`
+- `db/app.py`: Python database helpers (Flask only)
+
+### Changes to Existing Files
+
+**Modified:**
+- `db/app.py`: Refactored from Flask routes to database helper module
+  - **Before:** Full Flask app with form routes and template rendering
+  - **After:** Pure database layer with `get_db_connection()`, `init_db()` helpers
+  - **Purpose:** Separation of concerns—database logic isolated from routing
+
+- `Project/app.js`: Already existed; no changes needed
+  - Uses relative API paths (`/api/fish`) that work with both Flask and Express
+
+**New Files:**
+- `Project/app.py`: Flask application entry point (full-stack runner)
+- `Project/requirements.txt`: Python dependencies (Flask, flask-cors)
+
+**Unchanged:**
+- `server.js`: Express backend (continues to work alongside Flask option)
+- `index.html`, `script.js`, CSS, images: Frontend remains identical
+- SQL files in `db/`: Schema and seed data shared by both backends
