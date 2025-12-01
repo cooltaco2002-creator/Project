@@ -1,6 +1,6 @@
 """
 db/app.py - Database layer for Flask backend
-Provides DB connection and helper functions; maintains separation of concerns.
+Provides DB connection and helper functions for Fish Finder application.
 """
 import sqlite3
 import os

@@ -15,7 +15,6 @@ from app import get_db_connection, init_db
 app = Flask(__name__, static_folder='.')
 CORS(app)  # Enable CORS for frontend access
 
-# Initialize database on startup
 init_db()
 
 # Serve static files (HTML, CSS, JS, images)
@@ -27,10 +26,10 @@ def index():
 def static_files(path):
     return send_from_directory('.', path)
 
-# ========== API Endpoints ==========
+# API Endpoints 
 
 # GET /api/fish - List fish with sorting and optional filtering
-# Annotation: ORDER BY average_length_cm DESC sorts results; WHERE filters by habitat
+# ORDER BY average_length_cm DESC sorts results; WHERE filters by habitat
 @app.route('/api/fish', methods=['GET'])
 def get_fish():
     habitat = request.args.get('habitat')
@@ -53,7 +52,7 @@ def get_fish():
     return jsonify([dict(row) for row in rows])
 
 # GET /api/fish/summary - Aggregation example: average length per habitat (GROUP BY)
-# Annotation: GROUP BY habitat aggregates average_length_cm via AVG()
+# GROUP BY habitat aggregates average_length_cm via AVG()
 @app.route('/api/fish/summary', methods=['GET'])
 def fish_summary():
     sql = """
@@ -62,7 +61,7 @@ def fish_summary():
         WHERE is_active = 1
         GROUP BY habitat
         ORDER BY species_count DESC
-    """  # GROUP BY + ORDER BY identified
+    """  
     
     conn = get_db_connection()
     rows = conn.execute(sql).fetchall()
@@ -71,7 +70,7 @@ def fish_summary():
     return jsonify([dict(row) for row in rows])
 
 # POST /api/fish - Create a fish via form input (validates required fields)
-# Annotation: Uses a transaction to insert and update timestamp atomically
+# Uses a transaction to insert and update timestamp atomically
 @app.route('/api/fish', methods=['POST'])
 def create_fish():
     data = request.get_json()
@@ -85,7 +84,7 @@ def create_fish():
     
     conn = get_db_connection()
     try:
-        conn.execute('BEGIN')  # Transaction start
+        conn.execute('BEGIN')  # Start transaction
         cursor = conn.execute(
             """INSERT INTO fishdata (common_name, scientific_name, average_length_cm, habitat)
                VALUES (?, ?, ?, ?)""",
@@ -135,7 +134,7 @@ def create_user():
         return jsonify({'error': str(e)}), 500
 
 # GET /api/users-with-fish - BONUS: Join users with fishdata via foreign key
-# Annotation: INNER JOIN users.favorite_fish_id = fishdata.id returns combined results
+# INNER JOIN users.favorite_fish_id = fishdata.id returns combined results
 @app.route('/api/users-with-fish', methods=['GET'])
 def users_with_fish():
     sql = """
@@ -153,7 +152,7 @@ def users_with_fish():
     return jsonify([dict(row) for row in rows])
 
 # GET /api/fish/above-average - Subquery example: fish longer than average
-# Annotation: Subquery AVG(average_length_cm) used in WHERE clause
+# Subquery AVG(average_length_cm) used in WHERE clause
 @app.route('/api/fish/above-average', methods=['GET'])
 def above_average():
     sql = """
@@ -169,7 +168,7 @@ def above_average():
     
     return jsonify([dict(row) for row in rows])
 
-# ========== Main ==========
+# Main 
 
 if __name__ == '__main__':
     print('Starting Flask server on http://localhost:5000')
