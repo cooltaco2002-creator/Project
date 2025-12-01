@@ -1,23 +1,19 @@
-"""
-app.py - Flask backend for Fish Finder application
-Full-stack entry point with REST API endpoints.
-Maintains separation of concerns by using db/app.py for database logic.
-"""
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import os
 import sys
 
-# Import database helpers from db/app.py
+# Import database helpers 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'db'))
-from app import get_db_connection, init_db
+from app import get_db_connection, init_db, DatabaseManager, row_to_dict, is_valid_length
 
 app = Flask(__name__, static_folder='.')
-CORS(app)  # Enable CORS for frontend access
+CORS(app)  # Enable CORS 
 
 init_db()
 
-# Serve static files (HTML, CSS, JS, images)
+db_manager = DatabaseManager()
+
 @app.route('/')
 def index():
     return send_from_directory('.', 'index.html')
@@ -43,7 +39,7 @@ def get_fish():
         sql += ' AND habitat = ?'
         params.append(habitat)
     
-    sql += f' ORDER BY {order}'  # Sorting identified here
+    sql += f' ORDER BY {order}'  
     
     conn = get_db_connection()
     rows = conn.execute(sql, params).fetchall()
@@ -143,7 +139,7 @@ def users_with_fish():
         INNER JOIN fishdata f ON u.favorite_fish_id = f.id
         WHERE u.is_active = 1 AND f.is_active = 1
         ORDER BY u.username ASC
-    """  # JOIN + ORDER BY identified
+    """  
     
     conn = get_db_connection()
     rows = conn.execute(sql).fetchall()
@@ -160,7 +156,7 @@ def above_average():
         FROM fishdata
         WHERE average_length_cm > (SELECT AVG(average_length_cm) FROM fishdata)
         ORDER BY average_length_cm DESC
-    """  # Subquery + ORDER BY identified
+    """ 
     
     conn = get_db_connection()
     rows = conn.execute(sql).fetchall()
